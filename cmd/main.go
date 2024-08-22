@@ -10,8 +10,10 @@ import (
 )
 
 func main() {
-	cfg := config.LoadConfig()
-
+	cfg, err := config.LoadConfig()
+	if err != nil {
+		log.Fatalf("Config yuklashda xatolik: %v", err)
+	}
 	db, err := repository.ConnectDB(cfg)
 	if err != nil {
 		log.Fatalf("Ma'lumotlar bazasiga ulanishda xatolik: %v", err)
